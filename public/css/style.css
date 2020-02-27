@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #2f3136;
+    color: #dcddde;
+}
+
+main {
+    padding: 1rem;
+    margin: auto;
+    width: 40%;
+}
+
+.main-header {
+    width: 100%;
+    height: 4rem;
+    background-color: #202225;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.product-form {
+    width: 20rem;
+    max-width: 90%;
+    margin: auto;
+}
+
+.form-control {
+    margin: 1rem 0;
+}
+
+.form-control label,
+.form-control input {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.25rem;
+}
+
+
+.form-control input {
+    border: none;
+    font: inherit;
+    border-radius: 2px;
+    background-color: #41444b;
+    padding: 0.5rem;
+    color: #dcddde;
+    margin-bottom: 1rem;
+}
+
+.form-control input:focus {
+    outline-color: #007acc;
+}
+
+.btn {
+    font: inherit;
+    border: none;
+    color: #41444b;
+    background: #b9bbbe;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    margin-top: 3rem;
+    padding: 0.6rem;
+}
+  
+.btn:hover,
+.btn:active {
+    background-color: #FFF;
+}
+
+::placeholder{
+    color: #6e7178;
+}
+
+.bmiResults{
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.bmiResultSpan,
+.bmiResponseSpan{
+    color: #FFF;
+    font-size: 1.8rem;
+}
+
+.errorBox{
+    background-color: #db564c;
+    color: #FFF;
+    border-radius: 5px;
+    height: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    padding: 1rem 2rem;
+    animation: fadein 1s;
+}
+
+.green{
+    color: #228C22;
+}
+
+.red{
+    color: #e03e1e;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}

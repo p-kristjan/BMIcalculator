@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1>#bmi_calculator</h1>
+    </header>
+
+    <main>
+        <div class="bmiResults">
+            <h2>Your BMI is <span class="bmiResultSpan"><%= bmiResult %></span></h2>
+            <h2>You are <span class="bmiResponseSpan <%= responseColor %>"><%= bmiResponse %></span>.</h2>
+        </div>
+        <form method="POST">
+        <button class="btn">back</button>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>#bmi_calculator</h1>
+    </header>
+
+    <main>
+        <% if(errorMessage.length > 0) {%>
+            <div class="errorBox"><p class="errorMsg"><%= errorMessage %></p></div> 
+        <% } %>
+        
+
+        <form class="form" method="POST">
+            <div class="form-control">
+                <label for="age">age</label>
+                <input type="number" name="age" id="age" placeholder="20-60">
+                <label for="height">height</label>
+                <input type="number" name="height" id="height" placeholder="cm">
+                <label for="weight">weight</label>
+                <input type="number" name="weight" id="weight" placeholder="kg">
+            </div>
+            <button class="btn" type="submit">calculate</button>
+        </form>
+    </main>
+</body>
+</html>

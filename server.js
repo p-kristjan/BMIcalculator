@@ -1,23 +1,34 @@
+// Node package esile kutsumine.
 const express = require('express');
 const bodyParser = require('body-parser');
 
+// Express kasutamine.
 const app = express();
 app.use(express.static('public'));
-app.set('view engine', 'ejs');
-app.set('views', 'views');
+
+// Body parser kasutamine.
 app.use(bodyParser.urlencoded({extended: true}));
 
+// Ejs ühendamine.
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+// Pordi sätestamine.
 var port = 8080;
+
+// Kõik vajalikud muutujad mida kasutada .ejs failides.
 var bmiResult = 0;
 var bmiResponse = "";
 var errorMessage = "";
 var color = "";
 
+// Kui pordiga ühendatakse, see kood aktiveerub.
 app.listen(port, function(){
     console.log('Port opened on: ' + port);
 });
 
 app.get('/', function(req, res){
+    // Kui ühendatakse peamise leheküljega, pandakse index.ejs vaateks. Render annab edasi mis ejs näitab browseris.
     res.render('index', {
         pageTitle: 'BMI Calculator',
         errorMessage: errorMessage
@@ -39,6 +50,7 @@ app.post('/', function(req, res){
             pageTitle: 'BMI Calculator',
             errorMessage: errorMessage
         });
+        // Kõik valesti täidetud väljad tehakse tühjaks, et läbi '/result' kirjutades URL lõppu ei saaks edasi minna.
         req.body.age = "";
         req.body.height = "";
         req.body.weight = "";
@@ -46,17 +58,24 @@ app.post('/', function(req, res){
     } else {
         // Salvestab info.
         bmiResult = (req.body.weight / (Math.pow(req.body.height / 100, 2))).toFixed(1);
+        // Viib edasi result lehele.
         res.redirect('/result');
+        // Kõiksugused errorid mis võisid enne olla kustutakse ära.
         var errorMessage = "";
     }
 });
 
 app.get('/result', function(req, res){
 
+    // Kui BMI tulemust mis pidi peale '/' POST meetodi tulema ei ole või BMI tulemuse väärtus on 0, siis viib tagasi
+    // pealehele ja kood lõpetatakse.
     if(isNaN(bmiResult) || bmiResult == 0){
         res.redirect('/');
+        return;
     }
 
+    // Leiab vastava kirjelduse BMI tulemusele, mis leiti peale '/' POST meetodit. Veel leiab mis värvi tulemuse
+    // kirjeldus panna.
     if(bmiResult < 18.5){
         bmiResponse = "underweight";
         color = 'red';
@@ -74,6 +93,7 @@ app.get('/result', function(req, res){
         color = 'red';
     }
 
+    // Kui tulemus, tulemuse kirjeldus ja kirjelduse värv on olemas, saadetakse see result.ejs faili.
     res.render('result', {
         pageTitle: 'BMI Calculator Result',
         bmiResult: bmiResult,
@@ -83,6 +103,7 @@ app.get('/result', function(req, res){
     
 });
 
+// See on '/result' POST meetod, mis käivitub kui sellel lehel vajutatakse "back" nuppu.
 app.post('/result', function(req, res){
     res.redirect('/');
 });
